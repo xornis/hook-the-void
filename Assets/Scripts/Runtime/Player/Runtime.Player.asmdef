@@ -1,0 +1,16 @@
+{
+    "name": "Runtime.Player",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0d587efc79f462b408d3a5d6a89feb56"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

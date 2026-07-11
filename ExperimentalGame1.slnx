@@ -1,2 +1,4 @@
 ﻿<Solution>
+  <Project Path="Runtime.Player.csproj" />
+  <Project Path="Runtime.Input.csproj" />
 </Solution>
