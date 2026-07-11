@@ -8,6 +8,7 @@ namespace Runtime.Input
 
         public Vector2 Move { get; private set; }
         public bool JumpPressed { get; private set; }
+        public bool JumpHeld { get; private set; }
 
         private void Awake()
         {
@@ -17,7 +18,13 @@ namespace Runtime.Input
 
             input.Player.Move.canceled += ctx => Move = Vector2.zero;
 
-            input.Player.Jump.performed += ctx => JumpPressed = true;
+            input.Player.Jump.started += _ =>
+            {
+                JumpPressed = true;
+                JumpHeld = true;
+            };
+
+            input.Player.Jump.canceled += _ => JumpHeld = false;
         }
 
         private void OnEnable()

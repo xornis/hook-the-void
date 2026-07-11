@@ -9,18 +9,30 @@ namespace Runtime.Player
         [SerializeField] private float speed = 8f;
         [SerializeField] private float jumpForce = 12f;
 
-        [Header("Jump & Grounding Settings")]
+        [Header("Ground Check Settings")]
         [SerializeField] private Transform groundCheck;
         [SerializeField] private float groundRadius = 0.15f;
         [SerializeField] private LayerMask groundLayer;
+
+        [Header("Coyote Time Settings")]
         [SerializeField] private float coyoteTime = 0.1f;
+
+        [Header("Jump Buffer Settings")]
         [SerializeField] private float jumpBuffer = 0.1f;
+
+        [Header("Variable Jump Height Settings")]
+        [SerializeField] private float jumpCutMultiplier = 0.5f;
+
+        [Header("Gravity Settings")]
+        [SerializeField] private float fallMultiplier = 2.5f;
+        [SerializeField] private float lowJumpMultiplier = 2f;
 
         private Rigidbody2D rb;
         private PlayerInputReader input;
 
         private float coyoteTimer;
         private float jumpBufferTimer;
+        private bool jumpCutApplied;
 
         private bool IsGrounded => Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
@@ -36,6 +48,8 @@ namespace Runtime.Player
             UpdateTimers();
             Move();
             TryJump();
+            VariableJump();
+            BetterGravity();
         }
 
         private void Move()
@@ -50,10 +64,10 @@ namespace Runtime.Player
         private void Jump()
         {
             Vector2 velocity = rb.linearVelocity;
-
             velocity.y = jumpForce;
-
             rb.linearVelocity = velocity;
+
+            jumpCutApplied = false;
         }
 
         private void UpdateTimers()
@@ -87,6 +101,42 @@ namespace Runtime.Player
 
             jumpBufferTimer = jumpBuffer;
             input.ConsumeJump();
+        }
+
+        private void VariableJump()
+        {
+            if (jumpCutApplied)
+                return;
+
+            if (input.JumpHeld)
+                return;
+
+            if (rb.linearVelocity.y <= 0)
+                return;
+
+            rb.linearVelocity = new Vector2(
+                rb.linearVelocity.x,
+                rb.linearVelocity.y * jumpCutMultiplier);
+
+            jumpCutApplied = true;
+        }
+
+        private void BetterGravity()
+        {
+            if (rb.linearVelocity.y < 0f)
+            {
+                rb.linearVelocity += Vector2.up *
+                    Physics2D.gravity.y *
+                    (fallMultiplier - 1f) *
+                    Time.fixedDeltaTime;
+            }
+            else if (rb.linearVelocity.y > 0f && !input.JumpHeld)
+            {
+                rb.linearVelocity += Vector2.up *
+                    Physics2D.gravity.y *
+                    (lowJumpMultiplier - 1f) *
+                    Time.fixedDeltaTime;
+            }
         }
 
         private void OnDrawGizmosSelected()
