@@ -1,12 +1,13 @@
-using UnityEngine;
 using Runtime.Input;
+using UnityEngine;
 
 namespace Runtime.Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Movement Settings")]
+        [Header("Movement & Jump Settings")]
         [SerializeField] private float speed = 8f;
+        [SerializeField] private float deceleration = 10f;
         [SerializeField] private float jumpForce = 12f;
 
         [Header("Ground Check Settings")]
@@ -56,7 +57,10 @@ namespace Runtime.Player
         {
             Vector2 velocity = rb.linearVelocity;
 
-            velocity.x = input.Move.x * speed;
+            if (Mathf.Abs(input.Move.x) > 0.01f)
+                velocity.x = Mathf.Lerp(velocity.x, input.Move.x * speed, Time.fixedDeltaTime * deceleration);
+            else
+                velocity.x = Mathf.Lerp(velocity.x, 0f, Time.fixedDeltaTime * deceleration);
 
             rb.linearVelocity = velocity;
         }
