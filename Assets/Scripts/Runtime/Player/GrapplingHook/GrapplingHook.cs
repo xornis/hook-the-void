@@ -5,6 +5,7 @@ namespace Runtime.Player
 {
     [RequireComponent(typeof(DistanceJoint2D))]
     [RequireComponent(typeof(PlayerInputReader))]
+    [RequireComponent(typeof(GrappleRope))]
     public class GrapplingHook : MonoBehaviour
     {
         [SerializeField] private Transform grappleOrigin;
@@ -13,10 +14,12 @@ namespace Runtime.Player
         [SerializeField] private LayerMask grappleLayer;
         [SerializeField] private float maxDistance = 6f;
 
-        [SerializeField] private bool showDebug = false;
+        [SerializeField] private bool showDebug;
+
+        private Transform grapplePoint;
 
         private DistanceJoint2D joint;
-        private Transform grapplePoint;
+        private GrappleRope rope;
 
         private PlayerInputReader input;
 
@@ -27,8 +30,11 @@ namespace Runtime.Player
             grapplePoint = Instantiate(grapplePointPrefab, runtimeObjects);
 
             joint = GetComponent<DistanceJoint2D>();
+            rope = GetComponent<GrappleRope>();
             input = GetComponent<PlayerInputReader>();
          
+            rope.Initialize(grapplePoint, grappleOrigin);
+
             Release();
         }
 
@@ -41,6 +47,8 @@ namespace Runtime.Player
         {
             grapplePoint.gameObject.SetActive(false);
             joint.enabled = false;
+
+            rope.Hide();
         }
 
         private void Attach(RaycastHit2D hit)
@@ -52,6 +60,8 @@ namespace Runtime.Player
 
             grapplePoint.position = hit.point;
             joint.connectedAnchor = hit.point;
+
+            rope.Show();
         }
 
         private void HandleGrappleInput()
