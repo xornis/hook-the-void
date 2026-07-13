@@ -1438,6 +1438,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   maxDistance: 5
+  showDebug: 0
 --- !u!1 &1179600902
 GameObject:
   m_ObjectHideFlags: 0

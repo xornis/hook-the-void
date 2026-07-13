@@ -13,6 +13,8 @@ namespace Runtime.Player
         [SerializeField] private LayerMask grappleLayer;
         [SerializeField] private float maxDistance = 6f;
 
+        [SerializeField] private bool showDebug = false;
+
         private DistanceJoint2D joint;
         private Transform grapplePoint;
 
@@ -50,8 +52,6 @@ namespace Runtime.Player
 
             grapplePoint.position = hit.point;
             joint.connectedAnchor = hit.point;
-
-            Debug.Log("Raycast Hit!");
         }
 
         private void HandleGrappleInput()
@@ -74,12 +74,17 @@ namespace Runtime.Player
 
             if (hit.collider != null)
             {
-                Debug.DrawLine(grappleOrigin.position, hit.point, Color.green, 0.1f);
                 Attach(hit);
-                Debug.Log($"Hit: {hit.collider.name}, {hit.point}");
+
+                if (showDebug)
+                {
+                    Debug.DrawLine(grappleOrigin.position, hit.point, Color.green, 0.1f);
+                    Debug.Log($"Hit: {hit.collider.name}, {hit.point}");
+                }
             }
             else
-                Debug.DrawRay(grappleOrigin.position, direction * maxDistance, Color.red, 0.1f);
+                if (showDebug)
+                    Debug.DrawRay(grappleOrigin.position, direction * maxDistance, Color.red, 0.1f);
         }
 
         private Vector2 GetPointerWorldPosition() => Camera.main.ScreenToWorldPoint(input.PointerScreenPosition); 
