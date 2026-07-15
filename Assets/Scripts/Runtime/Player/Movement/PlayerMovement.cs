@@ -83,12 +83,13 @@ namespace Runtime.Player
 
         private void GrappleMove()
         {
-            Vector2 radius = (grapplingHook.GrapplePoint - rb.position).normalized;
-            Vector2 tangent = new Vector2(radius.y, -radius.x);
-            tangent *= HorizontalInput;
-            rb.AddForce(tangent * grappleAcceleration, ForceMode2D.Force);
-            Debug.DrawRay(rb.position, radius, Color.red);
-            Debug.DrawRay(rb.position, tangent, Color.blue);
+            Vector2 grappleDirection = (grapplingHook.GrapplePoint - rb.position).normalized;
+            Vector2 swingDirection = new Vector2(grappleDirection.y, -grappleDirection.x) * HorizontalInput;
+
+            rb.AddForce(swingDirection * grappleAcceleration, ForceMode2D.Force);
+
+            Debug.DrawRay(rb.position, grappleDirection, Color.red);
+            Debug.DrawRay(rb.position, swingDirection, Color.blue);
         }
 
         private void GroundMove()
@@ -106,10 +107,18 @@ namespace Runtime.Player
 
         private void AirMove()
         {
+            float horizontalSpeed = Mathf.Abs(HorizontalVelocity);
+
+            bool movingSameDirection = HorizontalInput * HorizontalVelocity > 0;
+            bool reachedMaxAirSpeed = horizontalSpeed >= maxAirSpeed;
+
+            if (reachedMaxAirSpeed && movingSameDirection)
+                return;
+
             AddHorizontalForce(airAcceleration);
         }
 
-        private void AddHorizontalForce(float acceleration) => rb.AddForce(HorizontalInput * acceleration * transform.right, ForceMode2D.Force);
+        private void AddHorizontalForce(float acceleration) => rb.AddForce(HorizontalInput * acceleration * Vector2.right, ForceMode2D.Force);
 
         private void Jump()
         {
