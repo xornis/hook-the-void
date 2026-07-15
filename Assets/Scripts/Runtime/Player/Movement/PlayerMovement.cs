@@ -3,11 +3,22 @@ using UnityEngine;
 
 namespace Runtime.Player
 {
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(PlayerInputReader))]
+    [RequireComponent(typeof(GrapplingHook))]
     public class PlayerMovement : MonoBehaviour
     {
-        [Header("Movement & Jump Settings")]
-        [SerializeField] private float speed = 8f;
-        [SerializeField] private float deceleration = 10f;
+        [Header("Movement Settings")]
+        [Header("Acceleration")]
+        [SerializeField] private float groundAcceleration = 18f;
+        [SerializeField] private float airAcceleration = 5f;
+        [SerializeField] private float grappleAcceleration = 10f;
+
+        [Header("Speed Limits")]
+        [SerializeField] private float maxGroundSpeed = 10f;
+        [SerializeField] private float maxAirSpeed = 50f;
+
+        [Header("Jump Settings")]
         [SerializeField] private float jumpForce = 12f;
 
         [Header("Ground Check Settings")]
@@ -30,6 +41,7 @@ namespace Runtime.Player
 
         private Rigidbody2D rb;
         private PlayerInputReader input;
+        private GrapplingHook grapplingHook;
 
         private float coyoteTimer;
         private float jumpBufferTimer;
@@ -37,10 +49,16 @@ namespace Runtime.Player
 
         private bool IsGrounded => Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
 
+        private Vector2 Velocity => rb.linearVelocity;
+        private float HorizontalVelocity => Velocity.x;
+
+        private float HorizontalInput => input.Move.x;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody2D>();
             input = GetComponent<PlayerInputReader>();
+            grapplingHook = GetComponent<GrapplingHook>();
         }
 
         private void FixedUpdate()
@@ -55,15 +73,43 @@ namespace Runtime.Player
 
         private void Move()
         {
-            Vector2 velocity = rb.linearVelocity;
-
-            if (Mathf.Abs(input.Move.x) > 0.01f)
-                velocity.x = Mathf.Lerp(velocity.x, input.Move.x * speed, Time.fixedDeltaTime * deceleration);
+            if (grapplingHook.IsAttached)
+                GrappleMove();
+            else if (IsGrounded)
+                GroundMove();
             else
-                velocity.x = Mathf.Lerp(velocity.x, 0f, Time.fixedDeltaTime * deceleration);
-
-            rb.linearVelocity = velocity;
+                AirMove();
         }
+
+        private void GrappleMove()
+        {
+            Vector2 radius = (grapplingHook.GrapplePoint - rb.position).normalized;
+            Vector2 tangent = new Vector2(radius.y, -radius.x);
+            tangent *= HorizontalInput;
+            rb.AddForce(tangent * grappleAcceleration, ForceMode2D.Force);
+            Debug.DrawRay(rb.position, radius, Color.red);
+            Debug.DrawRay(rb.position, tangent, Color.blue);
+        }
+
+        private void GroundMove()
+        {
+            float horizontalSpeed = Mathf.Abs(HorizontalVelocity);
+
+            bool movingSameDirection = HorizontalInput * HorizontalVelocity > 0;
+            bool reachedMaxSpeed = horizontalSpeed >= maxGroundSpeed;
+
+            if (movingSameDirection && reachedMaxSpeed)
+                return;
+
+            AddHorizontalForce(groundAcceleration);
+        }
+
+        private void AirMove()
+        {
+            AddHorizontalForce(airAcceleration);
+        }
+
+        private void AddHorizontalForce(float acceleration) => rb.AddForce(HorizontalInput * acceleration * transform.right, ForceMode2D.Force);
 
         private void Jump()
         {

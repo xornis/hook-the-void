@@ -1249,9 +1249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d060dda635b0b4b9fdc4a4a01be0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Player::Runtime.Player.PlayerMovement
-  speed: 8
-  deceleration: 10
-  jumpForce: 12
+  groundAcceleration: 10
+  airAcceleration: 5
+  grappleAcceleration: 2
+  maxGroundSpeed: 10
+  maxAirSpeed: 30
+  jumpForce: 6
   groundCheck: {fileID: 106241579}
   groundRadius: 0.15
   groundLayer:
@@ -1313,7 +1316,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1439,7 +1442,7 @@ MonoBehaviour:
   grappleLayer:
     serializedVersion: 2
     m_Bits: 64
-  maxDistance: 5
+  maxDistance: 8
   showDebug: 0
 --- !u!114 &1069635911
 MonoBehaviour:
