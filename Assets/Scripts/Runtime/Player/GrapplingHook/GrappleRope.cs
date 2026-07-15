@@ -13,6 +13,7 @@ namespace Runtime.Player
         private void Awake()
         {
             line = GetComponent<LineRenderer>();
+            line.enabled = false;
         }
 
         private void LateUpdate()

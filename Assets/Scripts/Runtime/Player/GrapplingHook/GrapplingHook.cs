@@ -35,12 +35,18 @@ namespace Runtime.Player
          
             rope.Initialize(grapplePoint, grappleOrigin);
 
-            Release();
+            Initialize();
         }
 
         private void FixedUpdate()
         {
             HandleGrappleInput();
+        }
+
+        private void Initialize()
+        {
+            grapplePoint.gameObject.SetActive(false);
+            joint.enabled = false;
         }
 
         private void Release()
