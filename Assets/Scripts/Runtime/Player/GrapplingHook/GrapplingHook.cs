@@ -25,6 +25,8 @@ namespace Runtime.Player
 
         public bool IsAttached => joint.enabled;
 
+        public Vector2 GrapplePoint => grapplePoint.position;
+
         private void Awake()
         {
             grapplePoint = Instantiate(grapplePointPrefab, runtimeObjects);
