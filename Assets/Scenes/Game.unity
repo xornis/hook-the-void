@@ -6685,11 +6685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d060dda635b0b4b9fdc4a4a01be0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Player::Runtime.Player.PlayerMovement
-  groundAcceleration: 20
-  airAcceleration: 15
-  grappleAcceleration: 5
+  groundAcceleration: 5
+  airAcceleration: 2
+  grappleAcceleration: 7
+  groundDeceleration: 8
+  airDeceleration: 3
   maxGroundSpeed: 10
-  maxAirSpeed: 10
+  maxAirSpeed: 8
   jumpForce: 10
   groundCheck: {fileID: 106241579}
   groundRadius: 0.4
@@ -6701,6 +6703,7 @@ MonoBehaviour:
   jumpCutMultiplier: 0.5
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
+  showDebug: 0
 --- !u!58 &1069635905
 CircleCollider2D:
   m_ObjectHideFlags: 0
