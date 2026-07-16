@@ -6695,7 +6695,7 @@ MonoBehaviour:
   groundRadius: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   coyoteTime: 0.1
   jumpBuffer: 0.1
   jumpCutMultiplier: 0.5
@@ -12969,7 +12969,7 @@ GameObject:
   - component: {fileID: 6938517032065742475}
   - component: {fileID: 3750501693212932096}
   - component: {fileID: 3540913686674801999}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Border (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13138,7 +13138,7 @@ GameObject:
   - component: {fileID: 2082712353878389230}
   - component: {fileID: 5233643222714990437}
   - component: {fileID: 5588419167266636330}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13516,7 +13516,7 @@ GameObject:
   - component: {fileID: 3609068083016230690}
   - component: {fileID: 7373264902549563817}
   - component: {fileID: 7168804863562044646}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Border (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13763,7 +13763,7 @@ GameObject:
   - component: {fileID: 4144267175721439435}
   - component: {fileID: 7909869161818594880}
   - component: {fileID: 7559906943559836431}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Border (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
