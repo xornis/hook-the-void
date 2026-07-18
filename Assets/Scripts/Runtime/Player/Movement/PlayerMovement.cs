@@ -14,6 +14,10 @@ namespace Runtime.Player
         [SerializeField] private float airAcceleration = 5f;
         [SerializeField] private float grappleAcceleration = 10f;
 
+        [Header("Deceleration")]
+        [SerializeField] private float groundDeceleration = 10f;
+        [SerializeField] private float airDeceleration = 2f;
+
         [Header("Speed Limits")]
         [SerializeField] private float maxGroundSpeed = 10f;
         [SerializeField] private float maxAirSpeed = 50f;
@@ -38,6 +42,9 @@ namespace Runtime.Player
         [Header("Gravity Settings")]
         [SerializeField] private float fallMultiplier = 2.5f;
         [SerializeField] private float lowJumpMultiplier = 2f;
+
+        [Header("Debug Settings")]
+        [SerializeField] private bool showDebug;
 
         private Rigidbody2D rb;
         private PlayerInputReader input;
@@ -88,37 +95,36 @@ namespace Runtime.Player
 
             rb.AddForce(swingDirection * grappleAcceleration, ForceMode2D.Force);
 
-            Debug.DrawRay(rb.position, grappleDirection, Color.red);
-            Debug.DrawRay(rb.position, swingDirection, Color.blue);
+            if (showDebug)
+            {
+                Debug.DrawRay(rb.position, grappleDirection, Color.red);
+                Debug.DrawRay(rb.position, swingDirection, Color.blue);
+            }
         }
 
         private void GroundMove()
         {
-            float horizontalSpeed = Mathf.Abs(HorizontalVelocity);
+            float targetSpeed = HorizontalInput * maxGroundSpeed;
+            float speedDifference = targetSpeed - HorizontalVelocity;
 
-            bool movingSameDirection = HorizontalInput * HorizontalVelocity > 0;
-            bool reachedMaxSpeed = horizontalSpeed >= maxGroundSpeed;
+            float movement = Mathf.Abs(targetSpeed) > 0.01f ? groundAcceleration : groundDeceleration;
 
-            if (movingSameDirection && reachedMaxSpeed)
-                return;
+            float force = speedDifference * movement;
 
-            AddHorizontalForce(groundAcceleration);
+            rb.AddForce(force * Vector2.right, ForceMode2D.Force);
         }
 
         private void AirMove()
         {
-            float horizontalSpeed = Mathf.Abs(HorizontalVelocity);
+            float targetSpeed = HorizontalInput * maxAirSpeed;
+            float speedDifference = targetSpeed - HorizontalVelocity;
 
-            bool movingSameDirection = HorizontalInput * HorizontalVelocity > 0;
-            bool reachedMaxAirSpeed = horizontalSpeed >= maxAirSpeed;
+            float movement = Mathf.Abs(targetSpeed) > 0.01f ? airAcceleration : airDeceleration;
 
-            if (reachedMaxAirSpeed && movingSameDirection)
-                return;
+            float force = speedDifference * movement;
 
-            AddHorizontalForce(airAcceleration);
+            rb.AddForce(force * Vector2.right, ForceMode2D.Force);
         }
-
-        private void AddHorizontalForce(float acceleration) => rb.AddForce(HorizontalInput * acceleration * Vector2.right, ForceMode2D.Force);
 
         private void Jump()
         {
