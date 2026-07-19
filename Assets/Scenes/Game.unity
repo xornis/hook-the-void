@@ -6649,10 +6649,11 @@ GameObject:
   - component: {fileID: 1069635905}
   - component: {fileID: 1069635909}
   - component: {fileID: 1069635912}
-  - component: {fileID: 1069635903}
   - component: {fileID: 1069635904}
   - component: {fileID: 1069635910}
+  - component: {fileID: 1069635913}
   - component: {fileID: 1069635911}
+  - component: {fileID: 1069635903}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -6892,19 +6893,28 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.05
+    widthMultiplier: 0.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.05
         inSlope: 0
         outSlope: 0
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0.4
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -6948,6 +6958,21 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1069635913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069635902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91a265cc662d2479731cb4c71538b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Runtime.Player::GrappleVFX
+  hookTrail: {fileID: 7432049485330714556, guid: da86789b5c9ac1f4aa251435a023e713, type: 3}
+  runtimeObjects: {fileID: 708012378}
+  hookSpeed: 85
 --- !u!4 &1073161392 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8695994846957176305, guid: 81ea54fc7a953554492643889982d043, type: 3}
