@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: 640cf40565cc481479127ba3be10fc6c
+guid: 47b995fc1d1affd4fab4d4f66d163044
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5012247250989202885
-    second: hook2_v2_0
+      213: -5096226890090117279
+    second: hook2_v2 1_0
   - first:
-      213: -6357462932138077467
-    second: hook2_v2_1
+      213: 5128529699792381763
+    second: hook2_v2 1_1
   - first:
-      213: -191864235169143891
-    second: hook2_v2_2
+      213: -29524525544463330
+    second: hook2_v2 1_2
   - first:
-      213: 7611951575387991737
-    second: hook2_v2_3
+      213: -6832757658642537322
+    second: hook2_v2 1_3
   - first:
-      213: 511717317910021712
-    second: hook2_v2_4
+      213: 8345211824233703441
+    second: hook2_v2 1_4
   - first:
-      213: 2099796746613358214
-    second: hook2_v2_5
+      213: 5210637365678789634
+    second: hook2_v2 1_5
   - first:
-      213: -8712385008702037025
-    second: hook2_v2_6
+      213: 4588509333374877281
+    second: hook2_v2 1_6
   - first:
-      213: -2621592875432012425
-    second: hook2_v2_7
+      213: 2133014197750851315
+    second: hook2_v2 1_7
   - first:
-      213: 2172825924490972340
-    second: hook2_v2_8
+      213: 8376601686650446689
+    second: hook2_v2 1_8
   - first:
-      213: 2787789445168548991
-    second: hook2_v2_9
+      213: 3622590317947225479
+    second: hook2_v2 1_9
   - first:
-      213: 6382562727036167504
-    second: hook2_v2_10
+      213: -4024875724871201790
+    second: hook2_v2 1_10
   - first:
-      213: 9107640786122384924
-    second: hook2_v2_11
+      213: 8619567933685097145
+    second: hook2_v2 1_11
   - first:
-      213: 522634831112114195
-    second: hook2_v2_12
+      213: -3535550452509574871
+    second: hook2_v2 1_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -162,7 +162,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: hook2_v2_0
+      name: hook2_v2 1_0
       rect:
         serializedVersion: 2
         x: 40
@@ -177,14 +177,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b324c566eabe07ab0800000000000000
-      internalID: -5012247250989202885
+      spriteID: 1678269f4a09649b0800000000000000
+      internalID: -5096226890090117279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_1
+      name: hook2_v2 1_1
       rect:
         serializedVersion: 2
         x: 100
@@ -199,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e252318521c5c7a0800000000000000
-      internalID: -6357462932138077467
+      spriteID: 3476a2007923c2740800000000000000
+      internalID: 5128529699792381763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_2
+      name: hook2_v2 1_2
       rect:
         serializedVersion: 2
         x: 164
@@ -221,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: da324a1ae7c565df0800000000000000
-      internalID: -191864235169143891
+      spriteID: e14a2c6b99b179ff0800000000000000
+      internalID: -29524525544463330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_3
+      name: hook2_v2 1_3
       rect:
         serializedVersion: 2
         x: 11
@@ -243,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9bee972c0a513a960800000000000000
-      internalID: 7611951575387991737
+      spriteID: 69428486c1b2d21a0800000000000000
+      internalID: -6832757658642537322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_4
+      name: hook2_v2 1_4
       rect:
         serializedVersion: 2
         x: 58
@@ -265,14 +265,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 056417f703cf91700800000000000000
-      internalID: 511717317910021712
+      spriteID: 118e6d670f520d370800000000000000
+      internalID: 8345211824233703441
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_5
+      name: hook2_v2 1_5
       rect:
         serializedVersion: 2
         x: 222
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 68ef86e040af32d10800000000000000
-      internalID: 2099796746613358214
+      spriteID: 20459a2b317ef4840800000000000000
+      internalID: 5210637365678789634
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_6
+      name: hook2_v2 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -309,14 +309,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd360e9aef3671780800000000000000
-      internalID: -8712385008702037025
+      spriteID: 16ebf508de8adaf30800000000000000
+      internalID: 4588509333374877281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_7
+      name: hook2_v2 1_7
       rect:
         serializedVersion: 2
         x: 206
@@ -331,14 +331,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7751e2a6b2b3e9bd0800000000000000
-      internalID: -2621592875432012425
+      spriteID: 3f6edc59c1df99d10800000000000000
+      internalID: 2133014197750851315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_8
+      name: hook2_v2 1_8
       rect:
         serializedVersion: 2
         x: 11
@@ -353,14 +353,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4bc4b0c8aad672e10800000000000000
-      internalID: 2172825924490972340
+      spriteID: 163ecb55adaaf3470800000000000000
+      internalID: 8376601686650446689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_9
+      name: hook2_v2 1_9
       rect:
         serializedVersion: 2
         x: 100
@@ -375,14 +375,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7ccad3eab730b620800000000000000
-      internalID: 2787789445168548991
+      spriteID: 785830c63b6064230800000000000000
+      internalID: 3622590317947225479
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_10
+      name: hook2_v2 1_10
       rect:
         serializedVersion: 2
         x: 222
@@ -397,14 +397,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 055a3a5ebfa639850800000000000000
-      internalID: 6382562727036167504
+      spriteID: 20c85f95ad4c428c0800000000000000
+      internalID: -4024875724871201790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_11
+      name: hook2_v2 1_11
       rect:
         serializedVersion: 2
         x: 40
@@ -419,14 +419,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c162fa66a07d46e70800000000000000
-      internalID: 9107640786122384924
+      spriteID: 9b2e5a40e5bde9770800000000000000
+      internalID: 8619567933685097145
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: hook2_v2_12
+      name: hook2_v2 1_12
       rect:
         serializedVersion: 2
         x: 164
@@ -441,8 +441,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3101faf1c95c04700800000000000000
-      internalID: 522634831112114195
+      spriteID: 929f1b878933feec0800000000000000
+      internalID: -3535550452509574871
       vertices: []
       indices: 
       edges: []
@@ -461,19 +461,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      hook2_v2_0: -5012247250989202885
-      hook2_v2_1: -6357462932138077467
-      hook2_v2_10: 6382562727036167504
-      hook2_v2_11: 9107640786122384924
-      hook2_v2_12: 522634831112114195
-      hook2_v2_2: -191864235169143891
-      hook2_v2_3: 7611951575387991737
-      hook2_v2_4: 511717317910021712
-      hook2_v2_5: 2099796746613358214
-      hook2_v2_6: -8712385008702037025
-      hook2_v2_7: -2621592875432012425
-      hook2_v2_8: 2172825924490972340
-      hook2_v2_9: 2787789445168548991
+      hook2_v2 1_0: -5096226890090117279
+      hook2_v2 1_1: 5128529699792381763
+      hook2_v2 1_10: -4024875724871201790
+      hook2_v2 1_11: 8619567933685097145
+      hook2_v2 1_12: -3535550452509574871
+      hook2_v2 1_2: -29524525544463330
+      hook2_v2 1_3: -6832757658642537322
+      hook2_v2 1_4: 8345211824233703441
+      hook2_v2 1_5: 5210637365678789634
+      hook2_v2 1_6: 4588509333374877281
+      hook2_v2 1_7: 2133014197750851315
+      hook2_v2 1_8: 8376601686650446689
+      hook2_v2 1_9: 3622590317947225479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
