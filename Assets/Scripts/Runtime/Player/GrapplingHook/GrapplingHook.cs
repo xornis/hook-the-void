@@ -6,20 +6,24 @@ namespace Runtime.Player
     [RequireComponent(typeof(DistanceJoint2D))]
     [RequireComponent(typeof(PlayerInputReader))]
     [RequireComponent(typeof(GrappleRope))]
+    [RequireComponent(typeof(GrappleVFX))]
     public class GrapplingHook : MonoBehaviour
     {
+        [Header("Grapple Settings")]
         [SerializeField] private Transform grappleOrigin;
         [SerializeField] private Transform grapplePointPrefab;
         [SerializeField] private Transform runtimeObjects;
         [SerializeField] private LayerMask grappleLayer;
         [SerializeField] private float maxDistance = 6f;
 
+        [Header("Debug Settings")]
         [SerializeField] private bool showDebug;
 
         private Transform grapplePoint;
 
         private DistanceJoint2D joint;
         private GrappleRope rope;
+        private GrappleVFX vfx;
 
         private PlayerInputReader input;
 
@@ -31,10 +35,11 @@ namespace Runtime.Player
         {
             grapplePoint = Instantiate(grapplePointPrefab, runtimeObjects);
 
-            joint = GetComponent<DistanceJoint2D>();
-            rope = GetComponent<GrappleRope>();
             input = GetComponent<PlayerInputReader>();
-         
+            joint = GetComponent<DistanceJoint2D>();
+            vfx = GetComponent<GrappleVFX>();
+            rope = GetComponent<GrappleRope>();
+
             rope.Initialize(grapplePoint, grappleOrigin);
 
             Initialize();
@@ -56,6 +61,7 @@ namespace Runtime.Player
             grapplePoint.gameObject.SetActive(false);
             joint.enabled = false;
 
+            vfx.PlayHookTravel(grapplePoint.position, grappleOrigin.position, true);
             rope.Hide();
         }
 
@@ -69,6 +75,7 @@ namespace Runtime.Player
             grapplePoint.position = hit.point;
             joint.connectedAnchor = hit.point;
 
+            vfx.PlayHookTravel(grappleOrigin.position, grapplePoint.position, false);
             rope.Show();
         }
 

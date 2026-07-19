@@ -46,6 +46,10 @@ namespace Runtime.Player
         [Header("Debug Settings")]
         [SerializeField] private bool showDebug;
 
+        [Header("Sprite Settings")]
+        [SerializeField] private SpriteRenderer playerSprite;
+        [SerializeField] private float spriteRotationSpeed = 100f;
+
         private Rigidbody2D rb;
         private PlayerInputReader input;
         private GrapplingHook grapplingHook;
@@ -76,11 +80,12 @@ namespace Runtime.Player
             TryJump();
             VariableJump();
             BetterGravity();
+            RotatePlayer();
         }
 
         private void Move()
         {
-            if (grapplingHook.IsAttached)
+            if (grapplingHook.IsAttached && !IsGrounded)
                 GrappleMove();
             else if (IsGrounded)
                 GroundMove();
@@ -124,6 +129,11 @@ namespace Runtime.Player
             float force = speedDifference * movement;
 
             rb.AddForce(force * Vector2.right, ForceMode2D.Force);
+        }
+
+        private void RotatePlayer()
+        {
+            playerSprite.transform.Rotate(0, 0, -HorizontalVelocity * spriteRotationSpeed * Time.fixedDeltaTime);
         }
 
         private void Jump()
