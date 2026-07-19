@@ -6970,7 +6970,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc91a265cc662d2479731cb4c71538b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Runtime.Player::GrappleVFX
-  hookTrail: {fileID: 7432049485330714556, guid: da86789b5c9ac1f4aa251435a023e713, type: 3}
+  hook: {fileID: 5242978608101645046, guid: da86789b5c9ac1f4aa251435a023e713, type: 3}
   runtimeObjects: {fileID: 708012378}
   hookSpeed: 85
 --- !u!4 &1073161392 stripped

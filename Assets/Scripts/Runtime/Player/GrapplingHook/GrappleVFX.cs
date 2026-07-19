@@ -4,12 +4,14 @@ namespace Runtime.Player
 {
     public class GrappleVFX : MonoBehaviour
     {
-        [SerializeField] private TrailRenderer hookTrail;
+        [SerializeField] private Transform hook;
 
         [SerializeField] private Transform runtimeObjects;
         [SerializeField] private float hookSpeed = 100f;
 
+        private TrailRenderer hookTrail;
         private SpriteRenderer hookSprite;
+        private ParticleSystem hookParticles;
         
         private Vector2 target;
 
@@ -18,8 +20,14 @@ namespace Runtime.Player
 
         private void Awake()
         {
-            hookTrail = Instantiate(hookTrail, runtimeObjects);
-            hookSprite = hookTrail.GetComponent<SpriteRenderer>();
+            hook = Instantiate(hook, runtimeObjects);
+
+            hookSprite = hook.GetComponent<SpriteRenderer>();
+            hookTrail = hook.GetComponent<TrailRenderer>();
+            hookParticles = hook.GetComponent<ParticleSystem>();
+
+            hookSprite.enabled = false;
+            hookTrail.enabled = false;
         }
 
         private void Update()
@@ -32,9 +40,9 @@ namespace Runtime.Player
             if (!isFlying)
                 return;
 
-            if (Vector2.Distance(hookTrail.transform.position, target) < 0.01f)
+            if (Vector2.Distance(hook.position, target) < 0.01f)
             {
-                hookTrail.transform.position = target;
+                hook.position = target;
 
                 isFlying = false;
 
@@ -42,18 +50,21 @@ namespace Runtime.Player
                 hookTrail.enabled = false;
 
                 if (hideSpriteOnFinish)
+                {
                     hookSprite.enabled = false;
+                    hookParticles.Stop();
+                }
 
                 return;
             }
 
-            hookTrail.transform.position = Vector2.MoveTowards(hookTrail.transform.position, target, hookSpeed * Time.deltaTime);
+            hook.position = Vector2.MoveTowards(hook.position, target, hookSpeed * Time.deltaTime);
         }
 
         public void PlayHookTravel(Vector2 start, Vector2 end, bool hideSpriteOnFinish)
         {
             this.hideSpriteOnFinish = hideSpriteOnFinish;
-            hookTrail.transform.position = start;
+            hook.position = start;
 
             target = end;
 
@@ -62,6 +73,7 @@ namespace Runtime.Player
             hookTrail.Clear();
             hookTrail.enabled = true;
             hookSprite.enabled = true;
+            hookParticles.Play();
         }
     }
 }
